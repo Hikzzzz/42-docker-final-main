@@ -5,7 +5,7 @@ FROM golang:1.22 AS builder
 WORKDIR /app
 
 # Копируем go.mod и go.sum для кэширования зависимостей
-COPY . .
+
 RUN go mod download
 
 # Копируем код приложения
@@ -18,6 +18,6 @@ RUN  go build -o myapp .
 FROM alpine:latest
 # Копируем скомпилированное приложение из образа builder
 COPY --from=builder /app/myapp .
-COPY path/to/your/database/file.db .
+COPY path/to/your/tracker.db .
 # Определяем команду для запуска приложения
 CMD ["./myapp"]
