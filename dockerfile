@@ -18,6 +18,6 @@ RUN  go build -o myapp .
 FROM alpine:latest
 # Копируем скомпилированное приложение из образа builder
 COPY --from=builder /app/myapp .
-COPY path/to/your/tracker.db .
+COPY tracker.db .
 # Определяем команду для запуска приложения
 CMD ["./myapp"]
